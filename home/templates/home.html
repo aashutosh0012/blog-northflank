@@ -1,0 +1,92 @@
+{% extends 'templates/_base.html' %}
+{% load static %}
+
+
+
+{% block content %} 
+<div class="container-fluid p-0 m-0 text-center" id="home-container">
+
+    <div class="row m-5 p-5 align-items-center justify-content-center" id="Web-dev">
+        <div class="col-md-6 p-2 m-2">
+            <h1 class="display-3 font-family-helvetica-neue">Web Application Development</h1>
+            <p>Simpler, Faster & Efficient</p>
+            <a href="https://aashu.fly.dev/blog/post/22" target="_blank" rel="noopener noreferrer"><button class="btn btn-primary">Read More</button></a>
+            <a href="https://aashu.fly.dev/blog/post/22" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-outline-dark">Contact us.</button></a>
+        </div>
+        <div class="col-md-4 p-2 m-2">
+            <img class="img-fluid rounded " src="{% static 'images/hero.jpg' %}">
+        </div>
+    </div>
+    <br>
+
+    <div class="row m-2 p-2 align-items-center justify-content-center" id="Jira">
+        <div class="col-md-4 p-2 m-2 ">
+            <img class="img-fluid rounded" src="{% static 'images/jira-integration.png' %}">
+        </div>
+        <div class="col-md-6 p-2 m-2">
+            <h1 class="display-3">Jira Development</h1>
+            <p class="p-2 m-2">Automate & Simplify your Business processes using workflows, automations, integrations with cloud 
+                and any apps.</p>
+                <a href="https://aashu.fly.dev/blog/post/22" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-primary">Read More</button></a>
+                <a href="https://aashu.fly.dev/blog/post/22" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-outline-dark">Try Jira Solutions</button></a>
+            </div>        
+    </div>
+    <br>
+
+    <div class="row m-2 p-2 align-items-center justify-content-center" id="Automation">        
+        <div class="col-md-6 p-2 m-2">
+            <h1 class="display-3">Automation</h1>
+            <p class="p-2 m-2">Automate & Integrate IT Infrastructure Software & Applications, let the softwares do thier jobs.</p>
+            <a href="https://aashu.fly.dev/blog/post/22" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-primary">See examples</button></a>
+        </div>   
+        <div class="col-md-4 p-2 m-2">
+            <img class="img-fluid rounded " src="{% static 'images/software-automation.jpg' %}">
+        </div>     
+    </div>
+    <br>
+
+    
+
+    <div class="row m-2 p-2 align-items-center justify-content-center" id="DBA">   
+        <div class="col-md-4 p-2 m-2">
+            <img class="img-fluid rounded " src="{% static 'images/dba.png' %}">
+        </div>      
+        <div class="col-md-6 p-2 m-2">
+            <h1 class="display-3">Database Administration</h1>
+            <p class="p-2 m-2">Expertise on Oracle, SQL Server, PostgreSQL & MySQL complete lifecycle Database Administration.</p>
+            <a href="https://aashu.fly.dev/blog/post/22" target="_blank" rel="noopener noreferrer"><button type="button" class="btn btn-primary">See our expertise</button></a>
+        </div>            
+    </div>
+    <br>
+
+    <div class="row m-2 p-2 align-items-center justify-content-center" id="Monitoring">        
+               
+        <div class="col-md-4 p-2 m-2">
+            <img class="img-fluid rounded " src="{% static 'images/solarwinds1.png' %}">
+        </div> 
+        <div class="col-md-6 p-2 m-2">
+            <h1 class="display-3">Monitoring & Alerts</h1>
+            <p class="p-2 m-2">Utilize power of free, open source 
+                & paid softwares like Solarwinds, Promotheus, Grafana etc. 
+                Monitor your infrastructre end to end.
+            Integrate alerts with Ticketing Systems like Jira, Service Now etc.</p>
+            <a href="https://aashu.fly.dev/blog/post/22" target="_blank" rel="noopener noreferrer"><button class="btn btn-primary">Read More</button></a>
+        </div> 
+    </div>
+    <br>
+    
+    <div class="row m-2 p-2 align-items-center justify-content-center" id="IT-Ops">                
+        <div class="col-md-6 p-2 m-2 ">
+            <h1 class="display-3">Infrastructure Operations</h1>
+            <p class="p-2 m-2">End-to-End IT Infrastructure Operations & Management.</p>
+            <a href="https://aashu.fly.dev/blog/post/22" target="_blank" rel="noopener noreferrer"><button class="btn btn-primary">Read More</button></a>
+        </div>    
+        <div class="col-md-4 p-2 m-2">
+            <img class="img-fluid rounded " src="{% static 'images/it-operations.jpg' %}">
+        </div>    
+    </div>
+    <br>
+
+</div>
+
+{% endblock %}

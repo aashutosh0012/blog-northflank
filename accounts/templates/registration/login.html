@@ -1,0 +1,21 @@
+{% extends 'templates/_base.html'  %}
+{% block title %}Login{% endblock %}
+{% block content %}
+
+
+
+
+<div class="d-flex container-fluid col-md-9">
+	<div class='form-group'>
+		<form class="" method="POST"> {% csrf_token %}
+			{{ form.as_p }}
+			<div class="d-flex justify-content-around">
+				<button class='btn btn-primary'>Login</button>
+				<a class=" my-auto" href="{% url 'register' %}">Register</a>
+			</div>
+		</form>
+	</div>
+</div>
+
+
+{% endblock %}

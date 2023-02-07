@@ -1,0 +1,68 @@
+{% extends 'templates/_base.html' %}
+{% load static %}
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block content %} 
+<div class="container d-flex flex-column text-break m-3 mx-auto">
+
+	<div class="d-flex small">
+	<a class=""  href="{% url 'post_list' %}"> All Posts</a>
+	<p class="">-></p> 
+	<a class="" href="{% url 'post_detail' post.slug %}"> {{post.title}} </a>
+	</div>
+	<br>
+
+	<!-- #Display only Approved Posts -->
+	{% if post.is_approved %}	
+		<h1 class="">{{ post.title }}</h1>
+		<small class='d-md-flex mt-2 mb-0'>
+			<p class=" my-0 mx-2">Author: <strong><i class="text-info">{{ post.author }}</i></strong></p>
+			<p class=" my-0 mx-2">Updated: </strong><i class="text-info">{{ post.updated | date:'j M Y g:i a' }}</i></strong></p>
+			{% if post_tags %}
+				<p class='d-md-flex text-muted my-0 mx-2'> Tags: 
+				{% for post_tag in post_tags %}						
+					<i><a class='bg-info text-white mx-1 p-0' href="{% url 'tag_post_list' post_tag|slugify %}"> #{{post_tag}}</a></i>
+				{% endfor %}
+				</p>
+			{% endif %}	
+		</small>
+		<div class="d-sm-flex">
+			<div id="like">
+				{% if liked %}
+				<form action="{% url 'like_post' post.slug %}" method="POST" class=' my-0 py-0 mx-2'> {% csrf_token %}
+					<button type="submit" name="post_id" value="{{post.slug}}" class="btn btn-primary btn-sm py-0" title="Unlike this Post">
+						<small>Unlike</small>
+						<img src="{% static 'images/like-icon.png' %}" style="width:1.5vw"><small class="text-light mx-1">({{likes}})</small></button>
+				</form>				
+				{% else %}
+				<form action="{% url 'like_post' post.slug %}" method="POST" class='my-0 py-0 mx-2'> {% csrf_token %}
+					<button type="submit" name="post_id" value="{{post.slug}}" class="btn btn-primary btn-sm py-0" title="Like this Post">	
+						<small>Like</small>
+						<img src="{% static 'images/like-icon.png' %}" style="width:1.5vw"><small class="text-light mx-1 ">({{likes}})</small></button>
+				</form>				
+				{% endif %}	
+			</div>					
+			{% if user.is_authenticated and user.id == post.author.id %}
+			<div class="d-sm-flex m-0 p-0">			
+				<a class='mx-2' href="{% url 'edit_post' post.slug %}">Edit</a>
+				<a class='mx-2' href="{% url 'delete_post' post.slug %}">Delete</a>
+			</div>
+			{% endif %}
+		</div>
+		{% if post.cover_image_url %}
+			<img class="col-md-6 mx-auto img-fluid" style="max-height:300px" src="{{ post.cover_image_url }}">
+		{% else %}
+			<!-- <img class="img-fluid col-md-2" src="{{ random_image }}">	 -->
+			<img class="img-fluid col-md-6 mx-auto " style="max-height:300px" src="{{ post.cover_image_file }}">	
+		{% endif %}
+		{% if post.summary %}<p class="mt-2"><strong><i>Summary</i></strong> : {{ post.summary|safe }}</p>{% endif %}
+			<p>{{ post.body|safe }}</p>
+			<!-- #safe Filter allows to escape/render html tags/codes in DB model field in the template ex:<p><b>Inside P Tag</b></p>. -->
+	{% else %}
+		<p class="alert alert-primary mt-2" role="alert">This Post is awaiting approval and will be visible once approved. Thank you for Patience, keep reading.</p>
+		<h1>{{ post.title }} </h1>
+		<small class='text-info'><i>Author: {{ post.author }}, Created: {{ post.created | date:'j M Y g:i a' }}</i></small>
+	{% endif %}
+
+</div>
+{% endblock %}

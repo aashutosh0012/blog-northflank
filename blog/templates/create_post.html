@@ -1,0 +1,18 @@
+{% extends 'templates/_base.html' %}
+{% block title %}Create Post{% endblock %}
+{% block content %}
+<div class="d-flex container-fluid border col-md-9">
+	<div class='form-group'>
+		<form method="POST"> {% csrf_token %}
+			{{ form.media }}
+			{{ form.as_p }}
+			<button class='btn btn-primary'>Submit</button>
+			<a href="{% url 'post_list' %}">Cancel</a> 
+		</form>
+	</div>
+</div>
+
+
+
+
+{% endblock %}
