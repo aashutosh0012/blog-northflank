@@ -1,0 +1,122 @@
+{% extends 'templates/_base.html' %}
+{% load static %}
+{% block title %}Kwezar Technologies{% endblock%}
+
+
+
+{% block meta_desc %}"Kwezar is an Information Technology company, providing Full stack web development, Backend Engineering, IT Automation, System & Databases Administration, Python, Django Web developemnt, Jira Development & Administration, Linux, Bash & Powershell Scripting, REST API development & integrations, Cloud, Docker, CI/CD."{% endblock %}
+{% block meta_og_title %}"Kwezar Technologies"{% endblock %}
+{% block meta_og_type %}"website"{% endblock %}
+{% block meta_og_desc %}"Kwezar is an Information Technology company, providing Full stack web development, Backend Engineering, IT Automation, System & Databases Administration, Python, Django Web developemnt, Jira Development & Administration, Linux, Bash & Powershell Scripting, REST API development & integrations, Cloud, Docker, CI/CD."{% endblock %}
+{% block meta_og_url %}"https://kwezar.fly.dev/"{% endblock %}
+{% block meta_twtr_title %}"Kwezar Technologies"{% endblock %}
+{% block meta_twtr_desc %}"Kwezar is an Information Technology company, providing Full stack web development, Backend Engineering, IT Automation, System & Databases Administration, Python, Django Web developemnt, Jira Development & Administration, Linux, Bash & Powershell Scripting, REST API development & integrations, Cloud, Docker, CI/CD."{% endblock %}
+
+
+{% block content %} 
+
+	
+<div class="container-fluid text-white p-0 m-0 text-center" 
+    style="background-image: url({% static 'images/background-image.jpg' %});
+           background-repeat: repeat;
+           background-size: cover;" id="home-container">
+
+    <img class="img-fluid w-100 m-0 p-0" src="{% static 'images/kwezar-hero-2.jpg' %}" alt="kwezar-hero">
+
+	<br>
+	<br>
+    <br>
+    <br>
+
+    <div class="container-fluid p-0 m-0 text-center" id="services">
+
+        <div class="row m-2 p-2 align-items-center justify-content-center" id="Web-dev">
+            <div class="col-md-5 m-2 p-2">
+                <h1 class="display-3 font-family-helvetica-neue">Web Application Development</h1>
+                <p>Simpler, Faster & Efficient</p>
+                <a href="{% url 'tag_post_list' 'Django' %}"><button class="btn btn-outline-primary">Read More</button></a>
+                <a href="#"><button type="button" class="btn btn-outline-success">Contact us.</button></a>
+            </div>
+            <div class="col-md-5 m-2 p-2">
+                <img class="img-fluid rounded " src="{% static 'images/hero.jpg' %}" style="max-width:80%;">
+            </div>
+        </div>
+        
+        <br>
+
+        <div class="row m-2 p-2 align-items-center justify-content-center" id="Jira">
+            <div class="col-md-5 p-2 m-2">
+                <img class="img-fluid rounded" src="{% static 'images/jira-integration.png' %}">
+            </div>
+            <div class="col-md-5 p-2 m-2">
+                <h1 class="display-3">Jira Development</h1>
+                <p class="p-2 m-2">Automate & Simplify your Business processes using workflows, automations, integrations with cloud 
+                    and any apps.</p>
+                    <a href="{% url 'tag_post_list' 'Jira' %}"><button type="button" class="btn btn-outline-primary">Read More</button></a>
+                    <a href="#"><button type="button" class="btn btn-outline-success">Try Jira Solutions</button></a>
+                    <a href="#"><button type="button" class="btn btn-outline-success">Contact Us.</button></a>
+                </div>        
+        </div>
+        <br>
+
+        <div class="row m-2 p-2 align-items-center justify-content-center" id="Automation">        
+            <div class="col-md-6 p-2 m-2">
+                <h1 class="display-3">Automation</h1>
+                <p class="p-2 m-2">Automate & Integrate IT Infrastructure Software & Applications, let the softwares do thier jobs.</p>
+                <a href="{% url 'tag_post_list' 'Automation' %}"><button type="button" class="btn btn-outline-primary">See examples</button></a>
+                <a href="#"><button type="button" class="btn btn-outline-success">Contact Us.</button></a>
+            </div>   
+            <div class="col-md-4 p-2 m-2">
+                <img class="img-fluid rounded " src="{% static 'images/software-automation.jpg' %}">
+            </div>     
+        </div>
+        <br>
+
+        <div class="row m-2 p-2 align-items-center justify-content-center" id="DBA">     
+            <div class="col-md-4 p-2 m-2">
+                <img class="img-fluid rounded " src="{% static 'images/dba_logo.png' %}">
+            </div>           
+            <div class="col-md-6 p-2 m-2">
+                <h1 class="display-3">Database Administration</h1>
+                <p class="p-2 m-2">Expertise on Oracle, SQL Server, PostgreSQL & MySQL complete lifecycle Database Administration.</p>
+                <a href="{% url 'tag_post_list' 'Database' %}"><button type="button" class="btn btn-outline-primary">See our expertise</button></a>
+                <a href="#"><button type="button" class="btn btn-outline-success">Contact Us.</button></a>
+            </div>                
+        </div>
+        <br>
+
+        <div class="row m-2 p-2 align-items-center justify-content-center" id="Monitoring">  
+            <div class="col-md-6 p-2 m-2">
+                <h1 class="display-3">Monitoring & Alerts</h1>
+                <p class="p-2 m-2">Utilize power of free, open source 
+                    & paid softwares like Solarwinds, Promotheus, Grafana etc. 
+                    Monitor your infrastructre end to end.
+                Integrate alerts with Ticketing Systems like Jira, Service Now etc.</p>
+                <a href="{% url 'tag_post_list' 'Monitoring' %}"><button class="btn btn-outline-primary">Read More</button></a>
+                <a href="#"><button type="button" class="btn btn-outline-success">Contact Us.</button></a>
+            </div> 
+            <div class="col-md-4 p-2 m-2">
+                <img class="img-fluid rounded " src="{% static 'images/solarwinds.png' %}">
+            </div> 
+        </div>
+        <br>
+        
+        <div class="row m-2 p-2 align-items-center justify-content-center" id="IT-Ops">  
+            <div class="col-md-4 p-2 m-2">
+                <img class="img-fluid rounded " src="{% static 'images/it-operations.jpg' %}">
+            </div>               
+            <div class="col-md-6 p-2 m-2 ">
+                <h1 class="display-3">Infrastructure Operations</h1>
+                <p class="p-2 m-2">End-to-End IT Infrastructure Operations & Management.</p>
+                <a href="{% url 'post_list' %}"><button class="btn btn-outline-primary">Read More</button></a>
+                <a href="#"><button type="button" class="btn btn-outline-success">Contact Us.</button></a>
+            </div>    
+            
+        </div>
+        <br>
+
+    </div>
+
+</div>
+
+{% endblock %}

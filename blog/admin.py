@@ -13,7 +13,7 @@ def approve_Posts(modeladmin, request, queryset):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title','author','is_approved','updated','created','slug'] 
+    list_display = ['title','author','is_approved','updated','created','slug', 'created',] 
     list_filter = ['is_approved','tag']
     actions = [approve_Posts]
 

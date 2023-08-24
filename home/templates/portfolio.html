@@ -1,37 +1,11 @@
 {% extends 'templates/_base.html' %}
 {% load static %}
-{% block title %}Portfolio{% endblock%}
-
-<!-- Load CSS from Child Page after Base Template -->
-{% block css %}
-	<!-- Load Static Logos/Images -->
-	{% load static %}
-
-	<!-- CSS for Star Rating classes -->
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
-	<!-- Custom CSS for Index Page -->
-	<link rel="stylesheet" href="{% static 'css/index.css' %}">
-{% endblock %}
+{% block title %}Kwezar Technologies - IT Consulting{% endblock%}
 
 {% block content %}
-
-	<!-- Hero Sectoion - Name & Photo -->
-	<div class="d-flex justify-content-around align-content-center">
-		<div class="row align-items-center">
-			<div class="col-sm-4 text-center">
-				<h2>Aashutosh Kumar</h2>
-				<p>Hunting problems via Engineering.</p>
-			</div>
-			<div class="col-sm-8 m-auto text-center ">
-				<img class="img-fluid mb-3" src="{% static 'images/me.jpg' %}" class="rounded" style="width:70%">
-			</div>
-		</div>
-	</div>
-
-
 	
-	
+	<img class="img-fluid w-100 m-0 p-0" src="{% static 'images/kwezar-hero-2.jpg' %}" alt="kwezar-hero">
+
 	<!-- Skills Cards -->
 	<div class="d-flex justify-content-evenly align-items-center m-3 flex-wrap" id="accordion">
 		
@@ -40,7 +14,7 @@
 			<div class="card-body text-center">
 				<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#django" aria-expanded="false" aria-controls="django" >
 					Django Developer
-					<img src="{% static 'images/down-chevron.png' %}" style="width:5%">
+					<img src="{% static 'images/arrow-down.png' %}" style="width:5%">
 				</button>
 				<div class="collapse" id="django" data-bs-parent="#accordion">
 					<ul class="list-unstyled text-center">
@@ -61,7 +35,7 @@
 			<div class="card-body text-center">
 				<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#python" aria-expanded="false" aria-controls="python" >
 					Python Programmer
-					<img src="{% static 'images/down-chevron.png' %}" style="width:5%">
+					<img src="{% static 'images/arrow-down.png' %}" style="width:5%">
 				</button>
 				<div class="collapse" id="python" data-bs-parent="#accordion">
 					<ul class="list-unstyled  text-center">
@@ -81,7 +55,7 @@
 			<div class="card-body text-center">
 				<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#dba" aria-expanded="false" aria-controls="dba" >
 					Database Administration
-					<img src="{% static 'images/down-chevron.png' %}" style="width:5%">
+					<img src="{% static 'images/arrow-down.png' %}" style="width:5%">
 				</button>
 				<div class="collapse" id="dba" data-bs-parent="#accordion">
 					<ul class="list-unstyled  text-center">
@@ -96,11 +70,11 @@
 		</div>
 
 		<div class="card col-md-3 m-2 p-2 text-center border border-dark-subtle rounded bg-primary-subtle" style="max-width:350px">
-			<img class="card-img-top mx-auto my-2" src="{% static 'images/django_logo.png' %}">
+			<img class="card-img-top mx-auto my-2" src="{% static 'images/scripting_logo.png' %}">
 			<div class="card-body text-center">
 				<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#devops" aria-expanded="false" aria-controls="devops" >
 					DevOps & Automation
-					<img src="{% static 'images/down-chevron.png' %}" style="width:5%">
+					<img src="{% static 'images/arrow-down.png' %}" style="width:5%">
 				</button>
 				<div class="collapse" id="devops" data-bs-parent="#accordion">
 					<ul class="list-unstyled  text-center">
@@ -120,7 +94,7 @@
 			<div class="card-body text-center">
 				<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#linux" aria-expanded="false" aria-controls="linux" >
 					Linux Administration
-					<img src="{% static 'images/down-chevron.png' %}" style="width:5%">
+					<img src="{% static 'images/arrow-down.png' %}" style="width:5%">
 				</button>
 				<div class="collapse" id="linux" data-bs-parent="#accordion">
 					<ul class="list-unstyled  text-center">
@@ -141,7 +115,7 @@
 			<div class="card-body text-center">
 				<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#cloud" aria-expanded="false" aria-controls="cloud" >
 					Git & Cloud
-					<img src="{% static 'images/down-chevron.png' %}" style="width:5%">
+					<img src="{% static 'images/arrow-down.png' %}" style="width:5%">
 				</button>
 				<div class="collapse" id="cloud" data-bs-parent="#accordion">
 					<ul class="list-unstyled  text-center">
@@ -160,7 +134,7 @@
 			<div class="card-body text-center">
 				<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#jira" aria-expanded="false" aria-controls="jira" >
 					Jira Development
-					<img src="{% static 'images/down-chevron.png' %}" style="width:5%">
+					<img src="{% static 'images/arrow-down.png' %}" style="width:5%">
 				</button>
 				<div class="collapse" id="jira" data-bs-parent="#accordion">
 					<ul class="list-unstyled text-center">

@@ -6,6 +6,8 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from blog.models import Tag, Post
 from blog.forms import createPostForm, editPostForm
 from django.http import JsonResponse
+from django.db.models import Q 
+from django.db.models import Count
 
 #@login_required decorator: requires user to login before executing functions based views, un-authenticated users will be redirected to login
 #Add in settings.py  LOGIN_URL='login/', or in view function @login_required(login_url='login/') 
@@ -46,18 +48,41 @@ class post_list(ListView):
     model = Post
     paginate_by = 10
     ordering = ['-updated']
-    template_name = 'templates/post_list_1.html'
+    template_name = 'templates/post_list.html'
 
     def get_queryset(self):
         tag = self.kwargs.get('tag',None)
-        if not tag:
-            return Post.objects.filter(is_approved=True).order_by('-updated')
-        else:
-            return Post.objects.filter(is_approved=True).filter(tag__name__icontains=tag).order_by('-updated')
+        search_keyword = self.request.GET.get('q',None)
+        if tag:
+             return Post.objects.filter(is_approved=True).filter(tag__name__icontains=tag).order_by('-updated')
+        elif search_keyword:
+            return Post.objects.filter(is_approved=True).filter(
+                Q(tag__name__icontains=search_keyword) | 
+                Q(title__icontains = search_keyword) | 
+                Q(body__icontains = search_keyword) | 
+                Q(summary__icontains = search_keyword) |
+                Q(author__username__icontains = search_keyword)
+                ).distinct().order_by('-updated')
         
+            # queryset = Post.objects.filter(is_approved=True).filter(
+            #     Q(tag__name__icontains=search_keyword) | 
+            #     Q(title__icontains = search_keyword) | 
+            #     Q(body__icontains = search_keyword) | 
+            #     Q(summary__icontains = search_keyword) |
+            #     Q(author__username__icontains = search_keyword)
+            #     ).distinct().order_by('-updated')
+            # if not queryset.exists():
+            #     message = ("No results found for the given query.")
+            #     context = {'message': message}
+            #     return queryset
+            #     # return render(self.request, self.template_name, context)
+            # return queryset
+        else:
+            return Post.objects.filter(is_approved=True).order_by('-updated')  
+      
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['tags'] = Tag.objects.all()
+        context['tags'] = Tag.objects.all().annotate(tag_posts_count=Count('post')).order_by('-tag_posts_count')
         return context
     
 
@@ -97,7 +122,6 @@ class post_detail(DetailView):
 
 @login_required
 def like_post(request, slug):
-    print('view=likePostView')
     # slug = request.POST.get('slug')
     print(f'slug={slug}')
 	# Function to like or unlike a Post.
@@ -113,7 +137,6 @@ def like_post(request, slug):
 
 
 class createPostView(LoginRequiredMixin, CreateView):
-	print('view=createPostView')
 	model = Post
 	form_class = createPostForm
 	template_name = 'templates/create_post.html'
@@ -127,15 +150,20 @@ class createPostView(LoginRequiredMixin, CreateView):
 
 
 class editPostView(LoginRequiredMixin, UpdateView):
-	print('view=editPostView')
 	model = Post
 	template_name = 'templates/edit_post.html'
 	#fields = ['title','tag','body']
 	form_class = editPostForm
+	# def form_valid(self, form):
+	# 	tag_name = form.cleaned_data.get('tag')
+	# 	tag, created = Tag.objects.get_or_create(name=tag_name)
+	# 	self.object = form.save(commit=False)
+	# 	self.object.tag = tag
+	# 	self.object.save()
+	# 	return super().form_valid(form)
 
 
 class deletePostView(LoginRequiredMixin, DeleteView):
-	print('view=deletePostView')
 	model = Post
 	template_name = 'templates/delete_post.html'
 	success_url = reverse_lazy('post_list')

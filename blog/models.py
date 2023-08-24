@@ -28,7 +28,7 @@ class Post(models.Model):
 	title = models.CharField(max_length=200)	
 	slug = models.SlugField(max_length=200, blank=True, null=True, unique=True)
 	author = models.ForeignKey(User, on_delete=models.SET_NULL, blank=True, null=True)
-	summary = models.CharField(max_length=200)
+	summary = models.CharField(max_length=500)
 	body = RichTextField(blank=True,null=True)
 	created = models.DateTimeField(auto_now_add=True)
 	updated = models.DateTimeField(auto_now=True)

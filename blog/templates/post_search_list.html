@@ -1,0 +1,86 @@
+{% extends 'templates/_base.html' %}
+{% load static %}
+
+{% block title %}Blog{% endblock%}
+
+
+
+{% block content %} 
+
+<div class="container-fluid p-0 m-0" >
+    <div class="row">
+
+        <div class="col-md-2 p-0 m-0">
+            <nav class="navbar navbar-expand-md"> 
+                <div class="container-fluid text-break p-0 m-0">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>Tags
+                    </button>
+                    <div class="collapse navbar-collapse justify-content-center p-0 m-0" id="navbarTogglerDemo03">
+                        <ul class="list-group p-0 m-0 container-fluid">
+                            <li class="list-group-item list-group-item-action text-center"><a href="{% url 'post_list' %}"> All Posts</a></li>
+                            {% for tag in tags %}
+                                {% if tag.tagCount %}
+                                <li class="list-group-item list-group-item-action d-flex justify-content-between align-items-center"> 
+                                        <a class="text-decoration-none mx-lg-3" href="{% url 'tag_post_list' tag.name|slugify %}"> {{tag}}</a>
+                                        <span class="badge bg-primary rounded-pill ">{{tag.tagCount}}</span>
+                                </li>
+                                {% endif %}
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>  
+            </nav>
+        </div>      
+    
+        <div class="col-md-10">
+            <div class="list-group text-break">
+                {% for post in post_list %}
+                <li class="list-group-item list-group-item-action p-0 mx-0 my-1">
+                    <a class="text-decoration-none text-reset" href="{% url 'post_detail' post.slug %}">
+                        <div class="row d-flex justify-content-center align-items-center border p-0 m-0">
+                            <div class="col-md-3 d-flex justify-content-center  p-0 m-0 ">
+                                {% if post.cover_image_url %}
+                                <img class="img-fluid rounded my-1" src="{{ post.cover_image_url }}" style="max-width:80%">
+                                {% else %}
+                                <img class="img-fluid rounded my-1" src="{{ post.cover_image_file }}" style="max-height:150px">
+                                {% endif %} 
+                            </div>
+                            <div class="col-md-9 ">
+                                <h3 class="text-wrap">{{ post.title }}</h3>
+                                <p class="text-wrap">{{ post.summary | safe }}</p>
+                            </div>
+                        </div>
+                    </a>
+                </li>
+                {% endfor %}
+            </div>
+        </div>
+
+    </div>
+
+    <!--  Pagination | Add Link to Next, Previous, First & Last Posts pages -->	
+    <div class="text-center mt-3">
+        <!-- {% if is_paginated %} -->
+            {% if page_obj.has_previous %}
+                <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                <!-- {% if page_obj.number != 2 %} -->
+                    <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                <!-- {% endif %} -->
+            {% endif %}
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num %}
+                    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+            {% if page_obj.has_next %}
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+            {% endif %}
+    <!-- {% endif %} -->
+    </div>
+  
+</div>
+{% endblock %}

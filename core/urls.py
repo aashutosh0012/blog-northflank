@@ -20,7 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-from home.views import home
+# from home.views import home
 urlpatterns += [
     path('', include('home.urls'), name='home'),
     path('blog/', include('blog.urls'), name='blog-home'),
@@ -28,4 +28,9 @@ urlpatterns += [
     path('accounts/', include('accounts.urls')),
 ]
 
+from django.conf import settings
+from django.conf.urls.static import static
 
+
+# static files urls
+urlpatterns +=  static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
